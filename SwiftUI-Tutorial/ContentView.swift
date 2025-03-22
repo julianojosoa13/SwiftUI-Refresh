@@ -12,8 +12,17 @@ struct ContentView: View {
     
     var body: some View {
         
-        AsyncImage(url: URL(string: imageURL), scale: 3.0) {image in image} placeholder: {
+        AsyncImage(url: URL(string: imageURL), scale: 3.0) 
+        {image in image
+                .resizable()
+                .scaledToFit()
+        } placeholder: {
             Image(systemName: "photo.circle.fill")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: 128)
+                .foregroundColor(.purple)
+                .opacity(0.5)
         }.padding(40)
     }
 }
