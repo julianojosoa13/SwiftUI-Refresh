@@ -28,7 +28,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        AsyncImage(url: URL(string: imageURL), scale: 3.0) 
+        AsyncImage(url: URL(string: imageURL), scale: 3.0, transaction: Transaction(animation: .spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.25))) 
         {
             phase in
             switch(phase) {
