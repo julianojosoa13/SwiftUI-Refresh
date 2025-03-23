@@ -31,15 +31,14 @@ struct ContentView: View {
         AsyncImage(url: URL(string: imageURL), scale: 3.0) 
         {
             phase in
-            // SUCCES: The image successfully loaded
-            // FAILURE: The image failed to load with an error
-            // EMPTY: No image is loaded
-            
-            if let image = phase.image {
+            switch(phase) {
+            case .success(let image):
                 image.imageModifier()
-            } else if phase.error != nil {
+            case .failure(_):
                 Image(systemName: "ant.circle.fill").iconModifier()
-            } else {
+            case .empty:
+                Image(systemName: "photo.circle.fill").iconModifier()
+            @unknown default:
                 Image(systemName: "photo.circle.fill").iconModifier()
             }
         }
