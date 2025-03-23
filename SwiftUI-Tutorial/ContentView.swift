@@ -29,13 +29,21 @@ struct ContentView: View {
     var body: some View {
         
         AsyncImage(url: URL(string: imageURL), scale: 3.0) 
-        {image in image
-                .imageModifier()
-        } placeholder: {
-            Image(systemName: "photo.circle.fill")
-                .iconModifier()
-                
-        }.padding(40)
+        {
+            phase in
+            // SUCCES: The image successfully loaded
+            // FAILURE: The image failed to load with an error
+            // EMPTY: No image is loaded
+            
+            if let image = phase.image {
+                image.imageModifier()
+            } else if phase.error != nil {
+                Image(systemName: "ant.circle.fill").iconModifier()
+            } else {
+                Image(systemName: "photo.circle.fill").iconModifier()
+            }
+        }
+        .padding(40)
     }
 }
 
