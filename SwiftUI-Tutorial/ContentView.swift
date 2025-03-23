@@ -39,7 +39,7 @@ struct ContentView: View {
             case .empty:
                 Image(systemName: "photo.circle.fill").iconModifier()
             @unknown default:
-                Image(systemName: "photo.circle.fill").iconModifier()
+                ProgressView()
             }
         }
         .padding(40)
