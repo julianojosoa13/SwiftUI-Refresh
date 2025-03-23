@@ -33,7 +33,9 @@ struct ContentView: View {
             phase in
             switch(phase) {
             case .success(let image):
-                image.imageModifier()
+                image
+                    .imageModifier()
+                    .transition(.move(edge: .bottom))
             case .failure(_):
                 Image(systemName: "ant.circle.fill").iconModifier()
             case .empty:
